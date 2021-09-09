@@ -107,4 +107,30 @@ void deletion(node *&head, int pos)
     delete temp;
 }
 
+//insert node after specific index
+
+void insertAfter(node *&head, int index, int value){
+    if (index < 0) return;
+
+    node *temp = head;
+
+    for (int i=0; i<index && temp!=NULL; i++){
+        temp = temp->next;
+    }
+
+    if (temp == NULL) return;
+    else if(temp->next == NULL){ insertAtTail(head, value); return; }
+
+    node *newNode = new node(value);
+    node *after = temp->next;
+    node *before = temp;
+
+    newNode->next = after;
+    after->prev = newNode;
+
+    before->next = newNode;
+    newNode->prev = before;
+
+}
+
 
